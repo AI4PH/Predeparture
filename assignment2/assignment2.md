@@ -5,30 +5,35 @@ In this exercise, you will build your own decision tree and random forest models
 https://learn.arcgis.com/en/projects/predict-seagrass-habitats-with-machine-learning/)
 
 ##Task 1: Load the shapefile data using GeoPandas, show its top 10 records, and plot out the geographic data.
-```import geopandas as gpd
+```
+import geopandas as gpd
 coastline_attr = gpd.read_file("!!!path to the shp file!!!")
 coastline_attr.head(10)
 coastline_attr.plot(figsize=(10,8))
 ```
 ##Task 2: Simple geospatial feature engineering
-```coastline_attr["x"] = coastline_attr.geometry.x
+```
+coastline_attr["x"] = coastline_attr.geometry.x
 coastline_attr["y"] = coastline_attr.geometry.y
 ```
 
 ##Task 3: Divide the data into 80% for training and 20% for testing
-```training_data = coastline_attr.sample(frac=0.8, random_state=42)
+```
+training_data = coastline_attr.sample(frac=0.8, random_state=42)
 test_data = coastline_attr.drop(training_data.index)
 ```
 
 ##Task 4: Prepare the training and test data
-```training_label = training_data.pop("sea_grass")
+```
+training_label = training_data.pop("sea_grass")
 test_label = test_data.pop("sea_grass")
 training_data = training_data[["salinity","srtm30","silicate","phosphate","disso2","temp","nitrate",”x”, "y"]]
 test_data = test_data[["salinity","srtm30","silicate","phosphate","disso2","temp","nitrate","x","y"]]
 ```
 
 ##Task 5: Create and train decision tree and random forest models
-```from sklearn.tree import DecisionTreeClassifier
+```
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 decision_tree_model = DecisionTreeClassifier(random_state=42, min_samples_leaf=10)
 random_forest_model = RandomForestClassifier(random_state=42, min_samples_leaf=10)
@@ -37,7 +42,8 @@ random_forest_model.fit(training_data, training_label)
 ```
 
 ##Task 6: Make predictions and evaluate the classification accuracy
-```from sklearn.metrics import accuracy_score
+```
+from sklearn.metrics import accuracy_score
 y_pred_1 = decision_tree_model.predict(test_data)
 accuracy_1 = accuracy_score(test_label,y_pred_1)
 y_pred_2 = random_forest_model.predict(test_data)
@@ -50,7 +56,8 @@ print(accuracy_2)
 ```
 
 ##Task 7: Visualize the decision tree in graphic format
-```#pull out any one of the many decision trees – it doesn’t need to be the 6th.
+```
+#pull out any one of the many decision trees – it doesn’t need to be the 6th.
 estimator = random_forest_model.estimators_[5]
 
 from sklearn.tree import export_graphviz
@@ -92,7 +99,8 @@ Your task is to simply create a random forest model from this dataset. You can f
 Some important notes:
 1.	Since this dataset does not have spatial information, you can skip many of the processing steps from above. 
 2.	Here is the documentation for reading a CSV file in Python: https://docs.python.org/3/library/csv.html. Basically, you will use a “with open” function like this:
-```import csv
+```
+import csv
 with open(‘pima-diabetes.csv’, newline=’’) as csvfile:
    pima_data = csv.reader(csvfile, delimiter=',')
 ```
