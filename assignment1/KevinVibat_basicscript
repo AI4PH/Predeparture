@@ -1,0 +1,26 @@
+johngrade = ['name','grade2', 'pfail']
+jgrades = ["John", 39, 'fail']
+
+lindagrade = ['name','grade2', 'pfail']
+lgrades = ["Linda", 100, 'pass']
+
+johndict = dict(zip(johngrade,jgrades))
+lindadict = dict(zip(lindagrade,lgrades))
+
+johndict['name'] = johndict['name'], lindadict['name']
+johndict['grade2'] = johndict['grade2'], lindadict['grade2']
+johndict['pfail'] = johndict['pfail'], lindadict['pfail']
+
+def schoolgrade(grade2, pfail):
+    if grade2 > 50 and pfail == 'pass':
+        return 'yes'
+    else:
+        return 'no'
+    
+school = johndict
+                                                                                                                               
+for name, grade2, pfail in zip(school['name'], school['grade2'], school['pfail']):
+    if schoolgrade(grade2, pfail) == 'yes':
+        print(name + " passed the exam")
+    else:
+        print(name + " failed")  
