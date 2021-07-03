@@ -17,7 +17,6 @@ while True:
     friendlist.append(inp)
     namelength[inp] = len(inp)
     printfriends(friendlist)
-    print(namelength)
 
 for name in namelength:
     sumlength = sumlength + int(namelength[name])
@@ -29,8 +28,10 @@ else:
     print("*** Short names? Well I'm sure your friends have unique personalities but long names are kinda cool too.")
 
 
-lonely = np.less(len(friendlist),4)
-if lonely == True:
-    print("*** You deserve more love! Go hug some kittens or kiss a dog or maybe find yourself a friend.")
-else:
-    print("*** Have you checked on your friends today? Give them a call to see if they are still alive.")
+def checkloneliness():
+    lonely = np.less(len(friendlist),4)
+    if lonely == True:
+        print("*** You deserve more love! Go hug some kittens or kiss a dog or maybe find yourself a friend.")
+    else:
+        print("*** Have you checked on your friends today? Give them a call to see if they are still alive.")
+checkloneliness()
