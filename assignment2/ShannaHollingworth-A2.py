@@ -7,7 +7,7 @@ from subprocess import check_call
 from IPython.display import Image
 
 #Set header titles
-FILE_HEADER = ['times_pregnant', 'glucose', 'diastolic', 'tricep_skin_fold_thickness', 'insulin', 'BMI', 'diabetes_pedigree_function', 'age', 'diabetes', 'x', 'y']
+FILE_HEADER = ['times_pregnant', 'glucose', 'diastolic', 'tricep_skin_fold_thickness', 'insulin', 'BMI', 'diabetes_pedigree_function', 'age', 'diabetes']
 
 #Open CSV files
 with open('pima-diabetes.csv', newline='') as csvfile:   
@@ -31,6 +31,9 @@ decision_tree_model.fit(training_data, training_label)
 random_forest_model.fit(training_data, training_label)
 
 #Check accuracy
+y_pred_1 = decision_tree_model.predict(test_data)
+accuracy_1 = accuracy_score(test_label,y_pred_1)
+y_pred_2 = random_forest_model.predict(test_data)
 accuracy_2 = accuracy_score(test_label,y_pred_2)
 
 
